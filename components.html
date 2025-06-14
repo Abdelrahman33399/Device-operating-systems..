@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظم التشغيل: المكونات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg-color: #1a1a2e; /* Deep dark blue/purple */
+            --card-bg-color: #16213e; /* Slightly lighter dark for cards */
+            --neon-blue: #00ffff; /* Bright Cyan Neon */
+            --neon-purple: #ff00ff; /* Bright Magenta Neon */
+            --text-light: #e0e0e0; /* Light grey for body text */
+            --heading-color: #8affff; /* Lighter cyan for headings */
+            --accent-color: #e600e6; /* Brighter magenta accent */
+            --gradient-1: linear-gradient(135deg, #00ffff, #ff00ff); /* Cyan to Magenta */
+            --gradient-2: linear-gradient(135deg, #ff00ff, #00ffff); /* Magenta to Cyan */
+            --lighter-text-color: #d6eaff; /* Very light blue for better contrast */
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--dark-bg-color);
+            color: var(--lighter-text-color);
+            margin: 0;
+            /* تم إزالة padding-top: 80px; لعدم تثبيت الهيدر */
+            direction: rtl; /* Right-to-left for Arabic */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            line-height: 1.8;
+        }
+
+        .neon-text {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue), 0 0 15px var(--neon-blue), 0 0 25px var(--neon-purple);
+            animation: flicker 2s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; text-shadow: 0 0 8px var(--neon-blue), 0 0 15px var(--neon-blue), 0 0 25px var(--neon-purple); }
+            20%, 24%, 55% { opacity: 0.9; text-shadow: none; }
+        }
+
+        header {
+            background: rgba(22, 33, 62, 0.95);
+            color: var(--text-light);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* تم إزالة الخصائص التالية لجعل الهيدر غير ثابت */
+            /* position: fixed; */
+            /* top: 0; */
+            /* left: 0; */
+            /* width: 100%; */
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
+            /* تم إزالة z-index: 1000; */
+            box-sizing: border-box; /* Include padding in width */
+            border-bottom: 3px solid;
+            border-image: var(--gradient-1) 1;
+        }
+
+        .logo {
+            font-size: 3.5em;
+            font-weight: bold;
+            letter-spacing: 3px;
+            cursor: pointer;
+            animation: neon-glow-logo 3s infinite alternate;
+            background: var(--gradient-1);
+            -webkit-background-clip: text; /* For gradient text */
+            -webkit-text-fill-color: transparent; /* For gradient text */
+            display: inline-block; /* Essential for text glow/gradient */
+        }
+
+        @keyframes neon-glow-logo {
+            0% { text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-purple); }
+            50% { text-shadow: 0 0 20px var(--neon-purple), 0 0 30px var(--neon-blue), 0 0 40px var(--accent-color); }
+            100% { text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-purple); }
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            color: var(--lighter-text-color);
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background-color 0.4s ease, color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            background: var(--card-bg-color);
+            border: 2px solid transparent;
+            border-image: var(--gradient-1) 1;
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-2);
+            z-index: -1;
+            transition: transform 0.6s ease;
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+
+        nav ul li a:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        nav ul li a:hover {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--neon-blue), 0 0 30px var(--neon-purple);
+            text-shadow: 0 0 8px white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .card {
+            background-color: var(--card-bg-color);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+            border: 3px solid transparent;
+            border-image: var(--gradient-1) 1;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--gradient-1);
+            filter: blur(50px);
+            opacity: 0.15;
+            animation: rotate-glow 12s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate-glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 0 30px var(--neon-blue), 0 0 50px var(--neon-purple);
+        }
+
+        .card h2 {
+            color: var(--heading-color);
+            font-size: 2em;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .card p, .card ul {
+            font-size: 1.15em;
+            line-height: 1.9;
+            position: relative;
+            z-index: 1;
+            color: var(--lighter-text-color);
+        }
+
+        .card ul {
+            list-style-type: none;
+            padding-right: 25px;
+        }
+
+        .card ul li {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .card ul li::before {
+            content: '•';
+            color: var(--neon-purple);
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-weight: bold;
+            font-size: 1.3em;
+            text-shadow: 0 0 5px var(--neon-purple);
+        }
+
+        .ai-shapes {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: rgba(0, 255, 255, 0.15);
+            border-radius: 50%;
+            animation: pulse 4s infinite alternate;
+            z-index: 0;
+            filter: blur(20px);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.7) translate(-50%, -50%); opacity: 0.2; }
+            100% { transform: scale(1.3) translate(-50%, -50%); opacity: 0.7; }
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 2px solid rgba(0, 255, 255, 0.2);
+            gap: 15px;
+        }
+
+        .navigation-buttons .nav-button {
+            flex: 1;
+            background: var(--card-bg-color);
+            color: var(--lighter-text-color);
+            padding: 15px 25px;
+            border: 2px solid transparent;
+            border-image: var(--gradient-1) 1;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .navigation-buttons .nav-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--neon-blue), 0 0 30px var(--neon-purple);
+            color: white;
+        }
+
+        .navigation-buttons .nav-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+            box-shadow: none;
+            transform: none;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .logo {
+                font-size: 3em;
+            }
+            nav ul li {
+                margin-right: 15px;
+            }
+            nav ul li a {
+                font-size: 1.1em;
+                padding: 8px 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-end; /* Align items to the right */
+                padding: 15px 15px;
+                /* تم إزالة padding-top: 100px; */
+            }
+
+            .logo {
+                margin-bottom: 15px;
+                align-self: center; /* Center the logo when it's above nav */
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: flex-end; /* Align nav items to the right */
+                width: 100%;
+            }
+
+            nav ul li {
+                margin: 5px 10px;
+            }
+
+            body {
+                /* تم إزالة padding-top: 160px; */
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            .card h2 {
+                font-size: 1.7em;
+            }
+
+            .card p, .card ul {
+                font-size: 1.05em;
+            }
+
+            .navigation-buttons {
+                flex-direction: column; /* Stack buttons vertically */
+                align-items: stretch; /* Stretch buttons to full width */
+            }
+            .navigation-buttons .nav-button {
+                margin-bottom: 10px; /* Add space between stacked buttons */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.5em;
+            }
+            nav ul li a {
+                font-size: 1em;
+                padding: 6px 12px;
+            }
+            .navigation-buttons .nav-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Æ</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="neon-text">الرئيسية</a></li>
+                <li><a href="sections.html" class="neon-text">السكاشن</a></li>
+                <li><a href="components.html" class="neon-text">المكونات</a></li>
+                <li><a href="questions.html" class="neon-text">الأسئلة</a></li>
+                <li><a href="comparisons.html" class="neon-text">المقارنات</a></li>
+                <li><a href="challenges.html" class="neon-text">التحديات</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="neon-text" style="text-align: center; margin-bottom: 40px; font-size: 2.5em;">المكونات الأساسية لنظام التشغيل</h1>
+        <section class="cards-grid">
+            <div class="card">
+                <div class="ai-shapes"></div>
+                <h2>1. إدارة العمليات (Process Management)</h2>
+                <p>وحدة المعالجة المركزية (CPU) هي عقل الحاسوب، وإدارة العمليات هي الوظيفة الأساسية لنظام التشغيل لضمان استخدام فعال للمعالج. تشمل هذه الإدارة:</p>
+                <ul>
+                    <li>**جدولة العمليات (Process Scheduling):** تحديد ترتيب تنفيذ العمليات على المعالج لزيادة الإنتاجية وتقليل وقت الاستجابة.</li>
+                    <li>**إنشاء وإنهاء العمليات:** بدء تشغيل برامج جديدة أو إيقافها.</li>
+                    <li>**المزامنة والتواصل بين العمليات:** ضمان عمل العمليات معًا بسلاسة دون تعارض.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="ai-shapes"></div>
+                <h2>2. إدارة الذاكرة الرئيسية (Main Memory Management)</h2>
+                <p>الذاكرة الرئيسية (RAM) هي مساحة تخزين مؤقتة للبرامج والبيانات التي يستخدمها المعالج حاليًا. وظائف نظام التشغيل هنا تتضمن:</p>
+                <ul>
+                    <li>**تخصيص الذاكرة:** تحديد أي جزء من الذاكرة يمكن لكل عملية استخدامه.</li>
+                    <li>**تحميل البرامج:** نقل البرامج من التخزين الثانوي إلى الذاكرة لتنفيذها.</li>
+                    <li>**إدارة الذاكرة الافتراضية (Virtual Memory):** استخدام مساحة من القرص الصلب كذاكرة إضافية عند الحاجة.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="ai-shapes"></div>
+                <h2>3. إدارة الملفات (File Management)</h2>
+                <p>يعد تنظيم البيانات وتخزينها واسترجاعها أمرًا حيويًا. نظام التشغيل يدير الملفات وأنظمة الملفات من خلال:</p>
+                <ul>
+                    <li>**إنشاء وحذف الملفات والمجلدات.**</li>
+                    <li>**تنظيم الملفات:** في بنية هرمية (دليل/مجلد).</li>
+                    <li>**التحكم في الوصول:** تحديد من يمكنه قراءة، كتابة، أو تنفيذ الملفات (الأمان).</li>
+                    <li>**دعم أنواع مختلفة من أنظمة الملفات:** مثل NTFS و FAT32.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="ai-shapes"></div>
+                <h2>4. إدارة الإدخال/الإخراج (I/O Management)</h2>
+                <p>يتعامل نظام التشغيل مع جميع عمليات الإدخال والإخراج بين الحاسوب والأجهزة الطرفية (مثل لوحة المفاتيح، الفأرة، الطابعة، الشاشات) عن طريق:</p>
+                <ul>
+                    <li>**برامج تشغيل الأجهزة (Device Drivers):** برامج خاصة تمكن نظام التشغيل من التفاعل مع الأجهزة المختلفة.</li>
+                    <li>**إدارة المخازن المؤقتة (Buffering):** لتحسين كفاءة نقل البيانات.</li>
+                    <li>**تخصيص الأجهزة:** التأكد من أن الأجهزة يتم استخدامها بشكل صحيح ومنظم.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="ai-shapes"></div>
+                <h2>5. نظام الحماية والأمان (Protection and Security System)</h2>
+                <p>يهدف نظام التشغيل إلى حماية موارد النظام وبيانات المستخدم من الوصول غير المصرح به أو التلف. يشمل ذلك:</p>
+                <ul>
+                    <li>**التحقق من الهوية (Authentication):** مثل كلمات المرور والبصمة.</li>
+                    <li>**التحكم في الصلاحيات (Authorization):** تحديد الأذونات للمستخدمين والعمليات.</li>
+                    <li>**الكشف عن التهديدات:** حماية ضد الفيروسات والبرمجيات الخبيثة.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="ai-shapes"></div>
+                <h2>6. الشبكات (Networking)</h2>
+                <p>في الأنظمة الحديثة، تعد الشبكات مكونًا أساسيًا يسمح للأجهزة بالتواصل ومشاركة الموارد. نظام التشغيل يوفر:</p>
+                <ul>
+                    <li>**بروتوكولات الشبكة:** دعم بروتوكولات مثل TCP/IP.</li>
+                    <li>**مشاركة الملفات والطابعات:** عبر الشبكة.</li>
+                    <li>**إدارة الاتصالات:** بين الأجهزة المتصلة.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="ai-shapes"></div>
+                <h2>7. واجهة المستخدم (User Interface)</h2>
+                <p>هي الطريقة التي يتفاعل بها المستخدم مع نظام التشغيل. هناك نوعان رئيسيان:</p>
+                <ul>
+                    <li>**واجهة سطر الأوامر (CLI - Command Line Interface):** يتفاعل المستخدم من خلال إدخال أوامر نصية (مثل DOS أو Bash).</li>
+                    <li>**واجهة المستخدم الرسومية (GUI - Graphical User Interface):** يتفاعل المستخدم من خلال عناصر رسومية مثل الأيقونات، النوافذ، والقوائم (مثل Windows و macOS).</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="navigation-buttons">
+            <a href="sections.html" class="nav-button">السابق: السكاشن</a>
+            <a href="index.html" class="nav-button">الصفحة الرئيسية</a>
+        </div>
+    </main>
+</body>
+</html>

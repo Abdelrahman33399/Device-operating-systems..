@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظم التشغيل: المقارنات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg-color: #1a1a2e; /* Deep dark blue/purple */
+            --card-bg-color: #16213e; /* Slightly lighter dark for cards */
+            --neon-blue: #00ffff; /* Bright Cyan Neon */
+            --neon-purple: #ff00ff; /* Bright Magenta Neon */
+            --text-light: #e0e0e0; /* Light grey for body text */
+            --heading-color: #8affff; /* Lighter cyan for headings */
+            --accent-color: #e600e6; /* Brighter magenta accent */
+            --gradient-1: linear-gradient(135deg, #00ffff, #ff00ff); /* Cyan to Magenta */
+            --gradient-2: linear-gradient(135deg, #ff00ff, #00ffff); /* Magenta to Cyan */
+            --lighter-text-color: #d6eaff; /* Very light blue for better contrast */
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--dark-bg-color);
+            color: var(--lighter-text-color);
+            margin: 0;
+            /* تم إزالة padding-top: 80px; لعدم تثبيت الهيدر */
+            direction: rtl; /* Right-to-left for Arabic */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            line-height: 1.8;
+        }
+
+        .neon-text {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue), 0 0 15px var(--neon-blue), 0 0 25px var(--neon-purple);
+            animation: flicker 2s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; text-shadow: 0 0 8px var(--neon-blue), 0 0 15px var(--neon-blue), 0 0 25px var(--neon-purple); }
+            20%, 24%, 55% { opacity: 0.9; text-shadow: none; }
+        }
+
+        header {
+            background: rgba(22, 33, 62, 0.95);
+            color: var(--text-light);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* تم إزالة الخصائص التالية لجعل الهيدر غير ثابت */
+            /* position: fixed; */
+            /* top: 0; */
+            /* left: 0; */
+            /* width: 100%; */
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
+            /* تم إزالة z-index: 1000; */
+            box-sizing: border-box; /* Include padding in width */
+            border-bottom: 3px solid;
+            border-image: var(--gradient-1) 1;
+        }
+
+        .logo {
+            font-size: 3.5em;
+            font-weight: bold;
+            letter-spacing: 3px;
+            cursor: pointer;
+            animation: neon-glow-logo 3s infinite alternate;
+            background: var(--gradient-1);
+            -webkit-background-clip: text; /* For gradient text */
+            -webkit-text-fill-color: transparent; /* For gradient text */
+            display: inline-block; /* Essential for text glow/gradient */
+        }
+
+        @keyframes neon-glow-logo {
+            0% { text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-purple); }
+            50% { text-shadow: 0 0 20px var(--neon-purple), 0 0 30px var(--neon-blue), 0 0 40px var(--accent-color); }
+            100% { text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-purple); }
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            color: var(--lighter-text-color);
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background-color 0.4s ease, color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            background: var(--card-bg-color);
+            border: 2px solid transparent;
+            border-image: var(--gradient-1) 1;
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-2);
+            z-index: -1;
+            transition: transform 0.6s ease;
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+
+        nav ul li a:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        nav ul li a:hover {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--neon-blue), 0 0 30px var(--neon-purple);
+            text-shadow: 0 0 8px white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .content-section {
+            background-color: var(--card-bg-color);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+            border: 3px solid transparent;
+            border-image: var(--gradient-1) 1;
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--gradient-1);
+            filter: blur(50px);
+            opacity: 0.15;
+            animation: rotate-glow 12s linear infinite;
+            z-index: 0;
+        }
+        @keyframes rotate-glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .content-section h1, .content-section h2, .content-section h3, .content-section p, .content-section ul, .content-section ol, .content-section table {
+            position: relative; /* Ensure content is above the glow effect */
+            z-index: 1;
+        }
+
+        .content-section h1, .content-section h2 {
+            color: var(--heading-color);
+            text-shadow: 0 0 10px var(--neon-blue);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid;
+            border-image: var(--gradient-1) 1;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            margin-bottom: 15px;
+            color: var(--lighter-text-color);
+        }
+        .content-section ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content-section ul li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 10px;
+            color: var(--lighter-text-color);
+        }
+        .content-section ul li::before {
+            content: '\2022'; /* Bullet point */
+            color: var(--neon-blue);
+            font-size: 1.5em;
+            position: absolute;
+            right: 0;
+            top: -2px;
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        /* Table specific styles */
+        .content-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            overflow: hidden; /* Ensures rounded corners apply to content */
+            /* إضافة خاصية لجعل الجدول قابل للتمرير أفقياً على الشاشات الصغيرة */
+            display: block; /* لجعل الجدول يقبل overflow */
+            overflow-x: auto; /* لجعل الجدول قابل للتمرير أفقياً */
+            -webkit-overflow-scrolling: touch; /* لتحسين السكرول في iOS */
+        }
+        .content-section table th,
+        .content-section table td {
+            border: 1px solid rgba(0, 255, 255, 0.2); /* Lighter border for neon feel */
+            padding: 12px;
+            text-align: right;
+            color: var(--lighter-text-color);
+            white-space: nowrap; /* لمنع تكسير النص داخل خلايا الجدول */
+        }
+        .content-section table th {
+            background-color: rgba(0, 255, 255, 0.1);
+            font-weight: bold;
+            color: var(--heading-color);
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+        .content-section table tr:nth-child(even) {
+            background-color: rgba(255, 0, 255, 0.05); /* Slight magenta tint for even rows */
+        }
+        .content-section table tr:hover {
+            background-color: rgba(0, 255, 255, 0.15); /* Hover effect with neon blue tint */
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between; /* Adjusted for Previous/Next */
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 2px solid rgba(0, 255, 255, 0.2);
+            gap: 15px;
+        }
+
+        .navigation-buttons .nav-button {
+            flex: 1; /* Allow buttons to grow */
+            background: var(--card-bg-color);
+            color: var(--lighter-text-color);
+            padding: 15px 25px;
+            border: 2px solid transparent;
+            border-image: var(--gradient-1) 1;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .navigation-buttons .nav-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--neon-blue), 0 0 30px var(--neon-purple);
+            color: white;
+        }
+
+        .navigation-buttons .nav-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .logo {
+                font-size: 3em;
+            }
+            nav ul li {
+                margin-right: 15px;
+            }
+            nav ul li a {
+                font-size: 1.1em;
+                padding: 8px 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-end; /* Align items to the right */
+                padding: 15px 15px;
+                /* تم إزالة padding-top: 100px; */
+            }
+
+            .logo {
+                margin-bottom: 15px;
+                align-self: center; /* Center the logo when it's above nav */
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: flex-end; /* Align nav items to the right */
+                width: 100%;
+            }
+
+            nav ul li {
+                margin: 5px 10px;
+            }
+
+            body {
+                /* تم إزالة padding-top: 160px; */
+            }
+            .content-section {
+                padding: 25px;
+            }
+            .content-section h1 {
+                font-size: 2em;
+            }
+            .content-section h2 {
+                font-size: 1.7em;
+            }
+            .content-section p {
+                font-size: 1em;
+            }
+            .navigation-buttons {
+                flex-direction: column; /* Stack buttons vertically */
+                align-items: stretch; /* Stretch buttons to full width */
+            }
+            .navigation-buttons .nav-button {
+                margin-bottom: 10px; /* Add space between stacked buttons */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.5em;
+            }
+            nav ul li a {
+                font-size: 1em;
+                padding: 6px 12px;
+            }
+            .content-section h1 {
+                font-size: 1.8em;
+            }
+            .content-section h2 {
+                font-size: 1.5em;
+            }
+            .content-section p {
+                font-size: 0.9em;
+            }
+            .navigation-buttons .nav-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Æ</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="neon-text">الرئيسية</a></li>
+                <li><a href="sections.html" class="neon-text">السكاشن</a></li>
+                <li><a href="components.html" class="neon-text">المكونات</a></li>
+                <li><a href="questions.html" class="neon-text">الأسئلة</a></li>
+                <li><a href="comparisons.html" class="neon-text">المقارنات</a></li>
+                <li><a href="challenges.html" class="neon-text">التحديات</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <div class="content-section">
+                <h1 class="neon-text" style="text-align: center; margin-bottom: 40px; font-size: 2.5em;">مقارنات أنظمة التشغيل</h1>
+
+                <h2>أشهر أنظمة التشغيل</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>النظام</th>
+                            <th>الاستخدامات</th>
+                            <th>المميزات</th>
+                            <th>العيوب</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>UNIX</td>
+                            <td>الخوادم</td>
+                            <td>أمان عالي واستقرار</td>
+                            <td>صعوبة للمستخدمين العاديين</td>
+                        </tr>
+                        <tr>
+                            <td>Windows</td>
+                            <td>شائع في الحواسيب</td>
+                            <td>سهل الاستخدام ودعم واسع</td>
+                            <td>عرضة للفيروسات – مكلف</td>
+                        </tr>
+                        <tr>
+                            <td>MacOS</td>
+                            <td>أجهزة Apple</td>
+                            <td>واجهة جذابة – أمان</td>
+                            <td>تكلفة مرتفعة – محدودية التخصيص</td>
+                        </tr>
+                        <tr>
+                            <td>Linux</td>
+                            <td>المطورين – السيرفرات</td>
+                            <td>مجاني – آمن – قابل للتخصيص</td>
+                            <td>يتطلب خبرة تقنية</td>
+                        </tr>
+                        <tr>
+                            <td>Android</td>
+                            <td>الهواتف</td>
+                            <td>مرن – دعم واسع</td>
+                            <td>تجزئة التحديثات – أمان متفاوت</td>
+                        </tr>
+                        <tr>
+                            <td>iOS</td>
+                            <td>هواتف أبل</td>
+                            <td>أمان قوي – سلاسة</td>
+                            <td>تخصيص محدود – أجهزة مكلفة</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>مقارنة بين أنظمة التشغيل</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المعايير</th>
+                            <th>Windows</th>
+                            <th>MacOS</th>
+                            <th>Linux</th>
+                            <th>Android</th>
+                            <th>iOS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>الأداء</td>
+                            <td>عالي لكن يحتاج موارد</td>
+                            <td>سلس</td>
+                            <td>مرن حسب التوزيعة</td>
+                            <td>يعتمد على الجهاز</td>
+                            <td>ثابت</td>
+                        </tr>
+                        <tr>
+                            <td>الأمان</td>
+                            <td>متوسط ويحتاج مضاد فيروسات</td>
+                            <td>جيد</td>
+                            <td>عالي جدًا</td>
+                            <td>متوسط</td>
+                            <td>عالي جدًا</td>
+                        </tr>
+                        <tr>
+                            <td>التوافقية</td>
+                            <td>ممتازة</td>
+                            <td>محدودة</td>
+                            <td>جيدة مع تخصيص</td>
+                            <td>عالية</td>
+                            <td>عالية مع أجهزة Apple</td>
+                        </tr>
+                        <tr>
+                            <td>سهولة الاستخدام</td>
+                            <td>سهل</td>
+                            <td>أنيق وسهل</td>
+                            <td>صعب للمبتدئين</td>
+                            <td>مرن</td>
+                            <td>سهل جدًا</td>
+                        </tr>
+                        <tr>
+                            <td>التحديثات والدعم</td>
+                            <td>تحديثات دورية</td>
+                            <td>منتظمة</td>
+                            <td>متفاوتة حسب التوزيعة</td>
+                            <td>غير منتظمة أحيانًا</td>
+                            <td>مستمرة ومنظمة</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="questions.html" class="nav-button">السابق: الأسئلة</a>
+                <a href="challenges.html" class="nav-button">التالي: التحديات</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
